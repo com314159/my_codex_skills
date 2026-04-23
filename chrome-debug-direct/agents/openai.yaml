@@ -1,0 +1,7 @@
+interface:
+  display_name: "Chrome Debug Direct"
+  short_description: "Connect to an existing Chrome debug session"
+  default_prompt: "Use $chrome-debug-direct to inspect my existing gchromeDebug Chrome session without launching a new browser."
+
+policy:
+  allow_implicit_invocation: true
