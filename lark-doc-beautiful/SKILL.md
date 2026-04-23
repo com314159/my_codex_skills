@@ -25,6 +25,7 @@ If the user provides example docs, use them to extract reusable patterns only. D
    - Technical explainer: why it matters -> mental model -> architecture -> tradeoffs -> playbook.
    - Project/strategy: goal -> current state -> options -> recommendation -> risks -> execution.
    - Research report: conclusion -> evidence map -> competing interpretations -> implications -> references.
+   - Article/deep-dive explainer: source/context -> one-sentence thesis -> structure map -> decision diagram -> terminology -> section-by-section explanation -> final compression.
 3. Draft a block plan before calling `docs +create`: title, opening callout, 4-7 top-level sections, and the non-text block each section will contain.
 4. Write DocxXML with `lark-cli docs +create --api-version v2 --doc-format xml --content ...`.
 5. Fetch back with `lark-cli docs +fetch --api-version v2 --doc <url> --doc-format xml --detail with-ids --format pretty`.
@@ -44,6 +45,34 @@ Use a restrained, technical style. Make the document easy to scan without making
 - Add an `<hr/>` between major conceptual phases, not between every section.
 - End with a practical summary: checklist, playbook, decision table, or next actions.
 
+## Explainer Pattern
+
+For long-form explainers, paper/article breakdowns, concept tutorials, and "深入浅出" style documents, front-load navigation before detail:
+
+- If based on a source article, start with a source callout: original link, author, publish date, and why the source matters.
+- Add a reading-guide callout before the main body: who should read it, the single most important section, and the one idea to remember if the reader is short on time.
+- Add a one-sentence thesis callout. Make it opinionated and memorable.
+- Add a structure map table with columns like `#`, `section`, `core question`, or `takeaway`.
+- Add a decision tree or mental-model diagram near the top when the doc teaches a framework. This lets readers get the whole argument before reading details.
+- Add a terminology table before dense sections. Include a plain definition and a daily-life analogy for each term.
+- Choose one recurring metaphor and reuse it across sections to reduce cognitive load. Keep it accurate and do not force it where it does not fit.
+
+Use this per-section rhythm for difficult concepts:
+
+1. State "what this section is about" in one sentence.
+2. Explain the mechanism.
+3. Give a concrete failure/success scenario with enough detail that the reader can picture it.
+4. Compress the lesson into a table or diagram.
+5. Close with a core-insight callout.
+
+For decision-framework docs, include:
+- Default stance: what to do before adding complexity.
+- Trigger signals: measurable symptoms that justify changing approach.
+- First-line remedies: simpler fixes to try before architecture changes.
+- Upgrade criteria: when the heavier approach is justified.
+- Failure modes: how the recommended approach can still go wrong.
+- Final mantra: one sentence that governs future decisions.
+
 ## Information Design
 
 Write for fast comprehension:
@@ -51,6 +80,8 @@ Write for fast comprehension:
 - Prefer "concept -> mechanism -> example -> implication" over abstract exposition.
 - Use "what changes in practice" tables to translate theory into action.
 - Separate facts, interpretation, and recommendations.
+- Turn abstract principles into operational tests: "what signal proves this?", "what cheaper remedy should be tried first?", "what failure mode should be guarded against?"
+- Use analogies only when they clarify a technical boundary. Pair analogy with the precise technical definition so the analogy does not become the argument.
 - Use absolute dates when discussing time-sensitive events.
 - For web-researched docs, cite sources in a final "参考资料" section with link titles and URLs. Do not overquote; summarize in your own words.
 - For uncertain claims, say what is inferred and what evidence supports it.
