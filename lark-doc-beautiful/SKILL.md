@@ -40,10 +40,41 @@ Use a restrained, technical style. Make the document easy to scan without making
 - Avoid more than 3 consecutive plain `<p>` blocks. Convert dense text into `<table>`, `<callout>`, `<grid>`, `<ol>`, `<ul>`, `<checkbox>`, `<pre>`, or `<whiteboard>`.
 - Put comparisons, tradeoffs, roles, risks, examples, and implementation steps into tables. Keep tables to 2-4 columns unless the data truly needs more.
 - Use callouts for conclusions, warnings, definitions, decision points, and "what this means" summaries. Do not use callouts as decoration.
+- Use `<grid>` as a first-class layout tool, especially for side-by-side screenshots, before/after states, parallel options, and step-by-step visual walkthroughs.
 - Use code blocks only for actual code, pseudo-code, terminal output, data shape, or algorithmic loops. Add a preceding sentence explaining why the code matters.
 - Use Mermaid whiteboards only when a diagram improves comprehension: architecture, lifecycle, feedback loop, state machine, data flow, or responsibility split.
 - Add an `<hr/>` between major conceptual phases, not between every section.
 - End with a practical summary: checklist, playbook, decision table, or next actions.
+
+## Grid / Column Layout
+
+Use columns deliberately. A good grid reduces scrolling, makes comparison instant, and turns visual procedures into a scannable strip.
+
+Prefer these patterns:
+- 2 columns (`0.5 / 0.5`): before vs after, PC vs mobile, policy vs exception, problem vs solution, two screenshots that should be compared.
+- 3 columns (`0.333 / 0.333 / 0.333`): three states in one flow, three decision branches, three role responsibilities, compact screenshot sequences.
+- 4 columns (`0.25` each): mobile app walkthrough screenshots where each image is narrow and the reader benefits from seeing the whole sequence at once.
+- 5 columns only for very narrow phone screenshots or notification examples; otherwise it becomes cramped.
+
+Rules for image grids:
+- Put one short sentence before the grid explaining what the reader should compare or notice.
+- Use equal column ratios for equivalent items. Use unequal ratios only when one column is explanatory text and the other is visual evidence.
+- Keep images in the same grid visually homogeneous: same product surface, similar crop, similar scale, same phase of the workflow.
+- For procedural docs, put the step text immediately before the grid, then the screenshots. Do not bury instructions inside image captions.
+- Use callouts before or after grids for exceptions, warnings, or policy notes that affect the step.
+- Do not place long prose inside a column next to tall screenshots; it creates uneven scan paths. Use bullets or a small table instead.
+
+Example:
+
+```xml
+<p>Compare the entry screen and confirmation screen before booking.</p>
+<grid>
+  <column width-ratio="0.5"><img href="..." name="entry.png"/></column>
+  <column width-ratio="0.5"><img href="..." name="confirm.png"/></column>
+</grid>
+```
+
+For text-only grids, each column must have a heading and a compact list. If the content needs more than 5 bullets per column, use a table or separate sections instead.
 
 ## Explainer Pattern
 
@@ -91,6 +122,7 @@ Write for fast comprehension:
 A document is not done until it passes:
 - First screen has title + high-signal callout or summary.
 - The document contains at least 3 block types beyond paragraphs/headings.
+- If the document contains multiple screenshots, related images are grouped into `<grid>` blocks rather than stacked one by one.
 - Every top-level section has a clear job and at least one scan-friendly element.
 - No section is a wall of prose.
 - Key ideas are compressible into a table, checklist, or diagram near the end.
