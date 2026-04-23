@@ -1,0 +1,4 @@
+interface:
+  display_name: "Beautiful Lark Docs"
+  short_description: "Create clear, dense, polished Lark documents with XML blocks."
+  default_prompt: "Create or improve a Lark document so it is visually polished, logically clear, easy to scan, and information-dense."
